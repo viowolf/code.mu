@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <title></title>
+    
+</head>
+
+<body>
+    
+    <div></div>
+    <div></div>
+    <div></div>
+    
+    <style>
+        div{
+            height: 200px;
+            width: 400px;
+            border: 1px solid black;
+        }
+    </style>
+        
+    <script>
+        var div = document.getElementsByTagName('div');
+        for (let i=0; i<div.length; i++) {
+            div[i].addEventListener('click', changeColor1);
+        }
+
+        function changeColor1() {
+            this.style.background = 'red';
+            this.removeEventListener('click', changeColor1);
+            this.addEventListener('click', changeColor2);
+        }
+
+        function changeColor2() {
+            this.style.background = 'green';
+            this.removeEventListener('click', changeColor2);
+            this.addEventListener('click', changeColor1);
+        }
+    </script>
+
+</body>
+
+</html>

@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <title></title>
+    
+</head>
+
+<body onload="go()">
+    
+    <div id="content">
+
+        <p>До полуночи осталось:</p>
+
+        <tbody>
+            <table>
+                <tr>
+                    <td>Часы</td>
+                    <td>Минуты</td>
+                    <td>Секунды</td>
+                </tr>
+                <tr>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                </tr>                       
+          </table>
+
+        </tbody>
+        
+    </div>
+    
+    <style>
+        #content{
+            text-align: center;
+        }
+        table{
+            margin: auto;
+            font-size: 16px;
+            font-weight: bold;            
+            border-collapse: collapse;
+        }
+        td{
+            height: 25px;
+            width: 100px;
+            border: 2px solid black;            
+        }
+    </style>
+    
+    <script>
+        function go() {
+            window.setInterval(clock, 100);
+        }
+        function clock() {
+            let cell = document.getElementsByTagName('td');
+            let date = new Date();
+            let midnight = new Date(date.getFullYear(), date.getMonth(), date.getDate()+1, 0, 0, 0);
+            let differens = Math.floor((midnight - date) / 1000);
+            let h = Math.floor(differens/(60*60));
+            let m = Math.floor((differens - h*60*60)/60);
+            let s = Math.floor(differens - h*60*60 - m*60);
+            cell[3].innerHTML = addZero(h);
+            cell[4].innerHTML = addZero(m);
+            cell[5].innerHTML = addZero(s);
+        }
+        function addZero(num) {
+            if (num<=9) {
+                return '0' + num;
+            } else {
+                return num;
+            }
+        }
+    </script>
+
+</body>
+
+</html>

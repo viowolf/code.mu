@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <title></title>
+</head>
+
+<body>
+    <div id="container_1">
+    </div>
+
+    <div id="container_2">
+        Нажмите в любое место.
+        <div id="square_2"></div>
+    </div>
+    
+    <div id="container_3">
+        Нажмите в любое место.
+        <div id="square_3"></div>
+    </div>
+
+    <div id="container_4">
+        <input type="text" id="input_4" placeholder="Input some text">
+        <p>Код нажатой клавиши: ?</p>
+    </div>
+
+    <div id="container_5">
+        <input type="text" id="input_5" placeholder="Input some text">
+        <p>Нажатая клавиша: ?</p>
+    </div>
+
+    <div id="container_6">
+    </div>
+
+    <div id="container_7">
+    </div>
+
+    <div id="container_8">
+        <input type="text" id="input_8" placeholder="Input some text">
+        <p></p>
+    </div>
+
+    <style>
+        #container_1,
+        #container_2,
+        #container_3,
+        #container_4,
+        #container_5,
+        #container_6,
+        #container_7,
+        #container_8{
+            margin: 5px;
+            border: 2px dotted black;
+            padding: 5px;
+            height: 200px;
+            width: 200px;
+            float: left;
+        }
+        #square_2, #square_3{
+            border: 1px solid red;
+            height: 40px;
+            width: 40px;
+            position: absolute;
+        }
+        input{
+            height: 20px;
+            width: 120px;
+        }
+
+    </style>
+    
+    <script type="text/javascript">
+
+        //инициализируем переменные
+        let container_1 = document.getElementById('container_1'),   //определяем главные элементы div
+            container_6 = document.getElementById('container_6'),
+            container_7 = document.getElementById('container_7'),
+            container_8 = document.getElementById('container_8'),
+            square_2 = document.getElementById('square_2'),         //определяем вспомогательные элементы div
+            square_3 = document.getElementById('square_3'),
+            style_2 = window.getComputedStyle(square_2, ""),        //получаем стили вспомогательных элементов div
+            style_3 = window.getComputedStyle(square_3, ""),
+            input_4 = document.getElementById('input_4'),           //определяем элементы input
+            input_5 = document.getElementById('input_5'),
+            input_8 = document.getElementById('input_8');
+
+        //задаем событые и привязываем функцию
+        container_1.addEventListener('mousemove', callCursorTracker);
+        container_2.addEventListener('click', moveRedSquare_1);
+        container_3.addEventListener('click', moveRedSquare_2);
+        container_6.addEventListener('click', repaintBorder);
+        container_7.addEventListener('click', pasteNumber);
+        input_4.addEventListener('keypress', callPressKeyDefiner_1);
+        input_5.addEventListener('keypress', callPressKeyDefiner_2);
+        input_8.addEventListener('keypress', setContent);
+        
+
+        //создаем функцию и передаем в неё переменную "event", в которую браузер автоматически положит объект Event (объект Событие)
+        function callCursorTracker(event) {
+            container_1.innerHTML = 'X:' + event.clientX + ' ' + 'Y:' + event.clientY;
+        }
+
+        //создаем функцию перемещения элемента #square_1
+        function moveRedSquare_1(event) {
+            square_2.style.left = event.clientX + 'px';
+            square_2.style.top = event.clientY + 'px';
+        }
+
+        //создаем функцию перемещения элемента #square_1
+        function moveRedSquare_2(event) {
+            square_3.style.left = event.clientX - parseInt(style_3.width) / 2 + 'px';
+            square_3.style.top = event.clientY - parseInt(style_3.height) / 2 + 'px';
+        }
+
+        //создаем функцию определения кода нажатой клавишы
+        function callPressKeyDefiner_1(event) {
+            let code = event.keyCode;
+            container_4.lastElementChild.innerHTML = 'Код нажатой клавиши: ' + code;            
+        }
+
+        //создаем функцию определения нажатой клавишы
+        function callPressKeyDefiner_2(event) {
+            let key = String.fromCharCode(event.keyCode);
+            container_5.lastElementChild.innerHTML = 'Нажатая клавиша: ' + key;            
+        }
+
+        //создаем функцию изменения цвета объекта при клике на него и нажатой клавише Ctrl
+        function repaintBorder(event) {
+            if (event.ctrlKey) {
+                container_6.style.border = '1px solid red';
+            }
+        }
+
+        //создаем функцию изменения содержимого элемента
+        function pasteNumber(event) {
+            if (event.ctrlKey) {
+                container_7.innerHTML = '1';
+	        }
+	        if (event.altKey) {
+                container_7.innerHTML = '2';
+	        }
+	        if (event.shiftKey) {
+                container_7.innerHTML = '3';
+	        }
+        }
+
+        //создаем функцию, которая по нажатию Enter передает введенный текст в абзац под #input_8, а содержимое #input_8 очищает
+        function setContent(event) {
+            if (event.keyCode == 13) {
+                container_8.lastElementChild.innerHTML = input_8.value;
+                input_8.value = '';
+            }
+        }
+
+    </script>
+</body>
+
+</html>

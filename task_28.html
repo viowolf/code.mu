@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <div id="block_1">
+        <ul id="ul_1">Список:
+            <li></li>
+            <li></li>
+            <li></li>
+        </ul>
+        <button id="button_1">Add tag &lt;li&gt;</button>
+    </div>
+
+    <div id="block_2">
+        Фамилия: <input type="text" placeholder="Введите Фамилию"><br/>
+        Имя: <input type="text" placeholder="Введите Имя"><br/>
+        <button id="button_2">Add</button>
+        <table id="table">
+            <tr>
+                <td class="headline">Фамилия</td>
+                <td class="headline">Имя</td>
+            </tr>
+        </table>
+    </div>
+
+    <style>
+        div{
+            margin: 10px;
+            border: 1px solid black;
+            padding: 5px;
+            height: 500px;
+            float: left;
+        }
+        #block_1{
+            width: 200px;
+            text-align: center;
+        }
+        #block_2{
+            width: 400px;
+            text-align: left;
+        }
+        ul{
+            text-align: left;
+        }
+        button{
+            margin: 10px;
+            height: 30px;
+            width: 100px;
+        }
+        input{
+            margin: 10px;
+            height: 20px;
+            width: 300px;
+        }
+        table{
+            margin: auto;
+            font-size: 16px;
+            font-weight: bold;            
+            border-collapse: collapse;
+        }
+        td{
+            height: 25px;
+            width: 200px;
+            border: 2px solid black;
+            text-align: left;
+        }
+        .headline{
+            text-align: center;
+        }
+    </style>
+    
+    <script type="text/javascript">
+        //инициализируем переменные
+        let button_1 = document.getElementById('button_1'),
+            ul_1 = document.getElementById('ul_1'),
+            li = document.getElementsByTagName('li'),
+            
+            input = document.getElementsByTagName('input'),
+            button_2 = document.getElementById('button_2'),
+            table = document.getElementById('table');
+
+        //привязываем к button функцию дабавления li
+        button_1.addEventListener('click', addList);
+        ul_1.addEventListener('click', addChar);
+
+        button_2.addEventListener('click', addData);
+        table.addEventListener('click', editData);
+
+        //цикл заполнения и нумерации li
+        for (let i = 0, length = li.length; i < length; i++) {
+            li[i].innerHTML = 'Пункт ' + (i + 1);
+        }
+
+        //функция добавления нового li
+        function addList() {
+            let tagLi = document.createElement('li');
+            tagLi.innerHTML = 'Пункт ' + (li.length + 1);
+            ul_1.appendChild(tagLi);
+        }
+
+        //функция добавления "!" в конце содержимого li
+        function addChar() {
+            let li = event.target.closest('li');
+            li.innerHTML += '!';
+        }
+
+        //функция добавления данных в таблицу
+        function addData() {
+            let tr = document.createElement('tr'),
+                td_1 = document.createElement('td'),
+                td_2 = document.createElement('td');
+            td_1.innerHTML = input[0].value;
+            td_2.innerHTML = input[1].value;
+            table.appendChild(tr);
+            tr.appendChild(td_1);
+            tr.appendChild(td_2);
+        }
+
+        //функция редактирования данных
+        function editData() {
+            let tagTd = event.target.closest('td'),
+                td = document.getElementsByTagName('td');
+            tagTd.innerHTML = prompt('Изменить');
+        }
+
+    </script>
+</body>
+</html>

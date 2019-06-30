@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <title></title>
+</head>
+
+<body>
+    
+    <div id="container_1">
+        <button id="button_1">Press me</button> <br/>
+        <input type="text" id="input_1" placeholder="Input some text">
+    </div>
+
+    <div id="container_2">
+        <button id="button_2">Press me</button>
+    </div>
+
+    <div id="container_3">
+        <button id="button_3">+</button> <br/>
+        <input type="text" id="input_3" placeholder="Input some text">
+    </div>
+
+    <div id="container_4">
+        <input type="text" id="input_4" placeholder="Input some text">
+    </div>
+
+    <div id="container_5">
+        <button id="button_5">Press me</button>
+    </div>
+
+    <style>
+        div{
+            height: 400px;
+            width: 200px;
+            border: 1px solid black;
+            text-align: center;
+            float: left;
+            margin: 10px;
+        }
+
+        input{
+            margin: 10px;
+            height: 25px;
+            width: 150px;
+        }
+
+        button{
+            margin: 10px;
+            height: 25px;
+            width: 100px;
+        }
+    </style>
+    
+    <script type="text/javascript">
+
+    //инициализируем глобальные переменные
+        var container_1 = document.getElementById('container_1'),
+            input_1 = document.getElementById('input_1'),
+            button_1 = document.getElementById('button_1');
+    //создаем событие для кнопки #button_1 с вызовом функции
+        button_1.addEventListener('click', cloneElement);
+    //создаем функцию по клонированию последнего элемента
+        function cloneElement() {
+            let clone = this.parentElement.lastElementChild.cloneNode(true);
+            this.parentElement.lastElementChild.parentElement.appendChild(clone);
+        }
+
+    //инициализируем глобальные переменные
+        var container_2 = document.getElementById('container_2'),
+            arr_1 = [1, 2, 3, 4, 5];
+    //создаем событие для кнопки #button_2 с вызовом функции
+        button_2.addEventListener('click', pasteElement);
+    //создаем функцию добавления неупорядоченного списка
+        function pasteElement() {
+            let ul = document.createElement('ul');
+        //цикл для заполнения списка
+            for (let i=0; i<arr_1.length; i++) {
+                let li = document.createElement('li');
+                li.innerHTML = arr_1[i];
+                ul.appendChild(li);
+            }
+        //добавляем список в #container_2
+            container_2.appendChild(ul);
+        //выравниваем список по левому краю
+            ul.style.textAlign = 'left';
+        }
+
+    //инициализируем глобальные переменные
+        var container_3 = document.getElementById('container_3');
+    //создаем событие для кнопки #button_3 с вызовом функции созданной ранее
+        button_3.addEventListener('click', cloneElement);
+
+    //инициализируем глобальные переменные
+        var container_3 = document.getElementById('container_3');
+    //создаем событие для кнопки #button_3 с вызовом функции
+        button_3.addEventListener('click', cloneElement);
+
+    //инициализируем глобальные переменные
+        var container_4 = document.getElementById('container_4');
+    //создаем событие для кнопки #input_3 с вызовом функции
+        input_4.addEventListener('blur', createNewInput);
+    //создаем функцию клонирования #input_3
+        function createNewInput() {
+            let clone = this.cloneNode(true);
+            clone.value = this.value;
+            this.parentElement.appendChild(clone);
+        }
+
+    //инициализируем глобальные переменные
+        var button_5 = document.getElementById('button_5');
+    //создаем событие для кнопки #button_1 с вызовом функции
+        button_5.addEventListener('click', hideParentElement);
+    //создаем функцию скрытия родительского элемента
+        function hideParentElement() {
+            button_5.parentElement.style.display = 'none';
+        }
+
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <title></title>
+</head>
+
+<body>
+    <script type="text/javascript">
+    
+        //Работа с регистром символов
+        /*
+        alert(('js').toUpperCase());
+        
+        alert(('JS').toLowerCase());
+        */
+        
+        //Работа с length, substr, substring, slice. Работа с indexOf
+        /*
+        var str1='I learn javascript!'
+        alert(str1.length);
+        
+        alert(str1.substr(2, 5));
+        alert(str1.substring(2, 7));
+        alert(str1.slice(2, 7));
+        
+        alert(str1.indexOf('learn'));
+        
+        var n=7, result='';
+        if(str1.length>n){
+            result=str1.substr(0, n)+' ...';
+        }else{
+            result=str1;
+        }
+        alert(result);
+        */
+        
+        //Работа с replace
+        /*
+        var str2='I-learn-javascript';
+        alert(str2.replace(/-/g, '!'));
+        */
+        
+        //Работа с split
+        /*
+        var str3='I learn javascript';
+        var arr1=str3.split(' ');
+        alert(arr1);
+        
+        var arr2=str3.split('');
+        alert(arr2);
+        
+        var date='2025-12-31';
+        var arr3=date.split('-');
+        alert(arr3[2]+'.'+arr3[1]+'.'+arr3[0]);
+        */
+        
+        //Работа с join
+        /*
+        var arr=['я', 'учу', 'javascript', '!'];
+        var str=arr.join('+');
+        alert(str);
+        */
+        
+        //Задачи
+        /*
+        var str1='i learn javascript';
+        var str2=str1.substr(0,1).toUpperCase() + str1.substr(1,str1.length);
+        alert(str2);
+        //или
+        var str3=str1.slice(0,1).toUpperCase() + str1.slice(1);
+        alert(str3);
+        
+        var arr=str1.split(' ');
+        for (var i=0; i<arr.length; i++){
+            arr[i]=arr[i].slice(0,1).toUpperCase() + arr[i].slice(1);
+        }
+        alert(arr.join(' '));
+        
+        var str4='var_test_text';
+        var arr4=str4.split('_');
+        for (var i=1; i<arr4.length; i++){
+            arr4[i]=arr4[i].slice(0,1).toUpperCase() + arr4[i].slice(1);
+        }
+        alert(arr4.join(''));
+        */
+        
+    </script>
+</body>
+
+</html>

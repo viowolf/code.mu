@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <title></title>
+    
+</head>
+
+<body>
+    <div>
+        <input type="text" onchange="go(this)" value="" placeholder="Введите дату своего рождения в формате 'ГГГГ-ММ-ДД'">
+    </div>
+
+    <style>
+        input{
+            height: 20px;
+            width: 350px;
+        }
+    </style>
+
+    <script>
+        function go(input) {
+            var arrInput = input.value.split('-');
+            for (let i=0; i<3; i++) {
+                arrInput[i] = Number(arrInput[i]);
+            }
+            arrInput[0] = date.getFullYear();
+            var strInput = arrInput.join('-');
+            var date = new Date();
+            if (Date.parse(strInput) - date < 0){
+                arrInput[0] = date.getFullYear() + 1;
+                strInput = arrInput.join('-');
+            }
+            var days = Math.floor((Date.parse(strInput) - date) / (1000*60*60*24));
+            alert(days);
+        }
+    </script>
+
+</body>
+
+</html>

@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <title></title>
+</head>
+
+<body>
+    <script type="text/javascript">
+    
+        //Работа с %
+        /*
+        var a=10, b=3;
+        document.write(a%3 + '<br />');
+        
+        var a=10, b=3, c=a%b;
+        if (c==0){
+            document.write('Делится' + '<br />');
+        }else{
+            document.write('Делится с остатком' + '<br />');
+        }
+        */
+        
+        //Работа со степенью и корнем
+        /*
+        var st1=Math.pow(2, 10);
+        document.write(st1 + '<br />');
+          
+        var st2=Math.sqrt(225);
+        document.write(st2 + '<br />');
+        
+        var arr=[4, 2, 5, 19, 13, 0, 10], cube=0, square=0;
+        for(var i=0; i<arr.length; i++){
+            cube+=Math.pow(arr[i], 3);
+        }
+        square=Math.sqrt(cube);
+        document.write(cube + '<br />');
+        document.write(square + '<br />');
+        */
+                
+        //Работа с функциями округления
+        /*
+        var a=379;
+        document.write(Math.sqrt(a).toFixed(0) + '<br />');
+        document.write(Math.sqrt(a).toFixed(1) + '<br />');
+        document.write(Math.sqrt(a).toFixed(2) + '<br />');
+        
+        var b=Math.sqrt(587);
+        var obj={ceil: Math.ceil(b), floor: Math.floor(b)};
+        document.write(obj.ceil + '<br />');
+        document.write(obj.floor + '<br />');
+        */
+                
+        //Нахождение максимального и минимального числа
+        /*
+        var arr=[4, -2, 5, 19, -130, 0, 10];
+        document.write(Math.max.apply(null, arr) + '<br />');        
+        document.write(Math.min.apply(null, arr) + '<br />'); 
+        */
+        
+        //Работа с рандомом
+        /*
+        function getRandomInt(min, max){
+	       return Math.floor(Math.random() * (max - min + 1)) + min;
+        }
+        document.write(getRandomInt(1, 100) + '<br />');
+        
+        var arr=[];
+        for(var i=0; i<10; i++){
+            arr[i]= getRandomInt(1, 100);
+            document.write(arr[i] + '<br />');
+        }
+        */
+        
+        //Работа с модулем
+        /*
+        var a=10, b=11;
+        document.write(Math.abs(a-b));
+        
+        var c=Math.abs((a-b) + '<br />');
+        document.write(c + '<br />');
+        */
+        
+        //Задачи
+        /*
+        var arr =[12, 15, 20, 25, 59, 79];
+        var i=0, sra=0;
+        while(i<arr.length){
+            sra+=arr[i];
+            i++;
+        }
+        document.write(sra/arr.length + '<br />');
+        
+        var a=4, b=1;
+        while(a>0){
+            b*=a;
+            a--;
+        }
+        document.write(b);
+        */
+        
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,258 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <title></title>
+</head>
+
+<body>
+    <div id="container_1">
+            <p>This is #container_1</p>
+        <div id="container_2">
+            <p>This is #container_2: Здесь содержатся результаты выполнения всех операций по вызову свойств метрики и прокрутки</p>
+        </div>
+
+            <button id="button_21">scroll from bottom to top</button><br/>
+            <button id="button_20">scrollBy_Y400</button>
+            <button id="button_19">scroll page to bottom</button>
+            <button id="button_18">scrollBy_Y300</button>
+            <button id="button_17">scrollTo_X300_Y500</button>
+            <button id="button_16">pageXOffset</button>
+            <button id="button_15">pageYOffset</button>
+            <button id="button_14">scroll from bottom on 100px</button><br/>
+            <button id="button_13">scrollWidth of "#container_2"</button>
+            <button id="button_12">scrollHeight of "#container_2"</button>
+            <button id="button_11">scrollLeft "#container_2" on 200px</button>
+            <button id="button_10">scrollTop "#container_2" on 200px</button>
+            <button id="button_9">scrollLeft of "#container_2"</button>
+            <button id="button_8">scrollTop of "#container_2"</button>
+            <button id="button_7">getComputedStyle of "#container_2"</button><br/>
+            <button id="button_6">clientHeight of "#container_2"</button>
+            <button id="button_5">clientWidth of "#container_2"</button>
+            <button id="button_4">offsetHeight of "#container_2"</button>
+            <button id="button_3">offsetWidth of "#container_2"</button>
+            <button id="button_2">clientLeft of "#container_2"</button>
+            <button id="button_1">clientTop of "#container_2"</button>
+    </div>
+
+    <style>
+        #container_1{
+            margin: 20px;
+            border: 2px solid black;
+            padding: 0px 5px 5px 5px;
+            height: 600px;
+            width: 600px;
+            text-align: center;
+            overflow: auto;
+        }
+
+        #container_2{
+            margin: 15px;
+            border: 1px solid black;
+            padding: 0px 5px 5px 5px;
+            height: 200px;
+            width: 556px;
+            text-align: center;
+            overflow: scroll;            
+            white-space: nowrap;
+        }
+
+        p{
+            text-align: left;
+        }
+
+        button{
+            margin: 10px;
+            border: 2px solid gray;
+            padding: 5px;
+            height: 25px;
+            width: 250px;
+        }
+    </style>
+    
+    <script type="text/javascript">
+    //инициализируем глобальные переменные
+        var container_1 = document.getElementById('container_1'),
+            container_2 = document.getElementById('container_2'),
+            button_1 = document.getElementById('button_1'),
+            button_2 = document.getElementById('button_2'),
+            button_3 = document.getElementById('button_3'),
+            button_4 = document.getElementById('button_4'),
+            button_5 = document.getElementById('button_5'),
+            button_6 = document.getElementById('button_6'),
+            button_7 = document.getElementById('button_7'),
+            button_8 = document.getElementById('button_8'),
+            button_9 = document.getElementById('button_9'),
+            button_10 = document.getElementById('button_10'),
+            button_11 = document.getElementById('button_11'),
+            button_12 = document.getElementById('button_12'),
+            button_13 = document.getElementById('button_13'),
+            button_14 = document.getElementById('button_14'),
+            button_15 = document.getElementById('button_15'),
+            button_16 = document.getElementById('button_16'),
+            button_17 = document.getElementById('button_17'),
+            button_18 = document.getElementById('button_18'),
+            button_19 = document.getElementById('button_19'),
+            button_20 = document.getElementById('button_20'),
+            button_21 = document.getElementById('button_21');
+
+    //создаем событие для кнопок с вызовом соответствующей функции
+        button_1.addEventListener('click', callClientTop);
+        button_2.addEventListener('click', callClientLeft);
+        button_3.addEventListener('click', callOffsetWidth);
+        button_4.addEventListener('click', callOffsetHeight);
+        button_5.addEventListener('click', callClientWidth);
+        button_6.addEventListener('click', callClientHeight);
+        button_7.addEventListener('click', callGetComputedStyle);
+        button_8.addEventListener('click', callScrollTop);
+        button_9.addEventListener('click', callScrollLeft);
+        button_10.addEventListener('click', callScrollTop_200);
+        button_11.addEventListener('click', callScrollLeft_200);
+        button_12.addEventListener('click', callScrollHeight);
+        button_13.addEventListener('click', callScrollWidth);
+        button_14.addEventListener('click', callScrollBottom_100);
+        button_15.addEventListener('click', callPageYOffset);
+        button_16.addEventListener('click', callPageXOffset);
+        button_17.addEventListener('click', callScrollTo_X300_Y500);
+        button_18.addEventListener('click', callScrollBy_Y300);
+        button_19.addEventListener('click', callScrollPageToBottom);
+        button_20.addEventListener('click', callScrollBy_Y400);
+        button_21.addEventListener('click', callScrollPageFromBottomToTop);
+        container_1.addEventListener('click', increaseElement);
+
+        //Функции на величину границы
+        function callClientTop() {
+            let p = document.createElement('p');
+            p.innerHTML = 'Ширина верхней границы "#container_2": ' + container_2.clientTop;
+            container_2.appendChild(p);
+        }
+
+        function callClientLeft() {
+            let p = document.createElement('p');
+            p.innerHTML = 'Ширина левой границы "#container_2": ' + container_2.clientLeft;
+            container_2.appendChild(p);
+        }
+
+        //Функции на полный размер элемента
+        function callOffsetWidth() {
+            let p = document.createElement('p');
+            p.innerHTML = 'Ширина "#container_2" с учетом границ: ' + container_2.offsetWidth;
+            container_2.appendChild(p);
+        }
+
+        function callOffsetHeight() {
+            let p = document.createElement('p');
+            p.innerHTML = 'Высота "#container_2" с учетом границ: ' + container_2.offsetHeight;
+            container_2.appendChild(p);
+        }
+
+        //Функции на размер элемента без границ, но с padding
+        function callClientWidth() {
+            let p = document.createElement('p');
+            p.innerHTML = 'Ширина "#container_2" без учета границ: ' + container_2.clientWidth;
+            container_2.appendChild(p);   
+        }
+
+        function callClientHeight() {
+            let p = document.createElement('p');
+            p.innerHTML = 'Высота "#container_2" без учета границ: ' + container_2.clientHeight;
+            container_2.appendChild(p);
+        }
+
+        //Функция по работе с getComputedStyle
+        function callGetComputedStyle() {
+            let p = document.createElement('p');
+            let style = getComputedStyle(container_2);
+            p.innerHTML = 'Height of "#container_2": ' + style.height + '<br/>'
+                        + 'Width of "#container_2": ' + style.width;
+            container_2.appendChild(p);
+        }
+
+        //Функции на прокрутку внутри "#container_2"
+        function callScrollTop() {
+            let p = document.createElement('p');
+            p.innerHTML = 'Элемент прокручен сверху на ' + container_2.scrollTop;
+            container_2.appendChild(p);   
+        }
+
+        function callScrollLeft() {
+            let p = document.createElement('p');
+            p.innerHTML = 'Элемент прокручен слева на ' + container_2.scrollLeft;
+            container_2.appendChild(p);   
+        }
+
+        function callScrollTop_200() {
+            container_2.scrollTop += 200;
+        }
+
+        function callScrollLeft_200() {
+            container_2.scrollLeft += 200;
+        }
+
+        //Функции на определение величины прокрутки содержимого "#container_2"
+        function callScrollHeight() {
+            let p = document.createElement('p');
+            p.innerHTML = 'Высота с учетом вертикальной прокрутки: ' + container_2.scrollHeight;
+            container_2.appendChild(p);    
+        }
+
+        function callScrollWidth() {
+            let p = document.createElement('p');
+            p.innerHTML = 'Ширина с учетом горизонтальной прокрутки: ' + container_2.scrollWidth;
+            container_2.appendChild(p);    
+        }
+
+        function callScrollBottom_100() {
+            container_2.scrollTop = container_2.scrollHeight - 100;
+        }
+
+        //Функции на определение величины прокрутки страницы
+        function callPageYOffset() {
+            let p = document.createElement('p');
+            p.innerHTML = 'Страница прокручена сверху на ' + window.pageYOffset;
+            container_2.appendChild(p);
+        }
+
+        function callPageXOffset() {
+            let p = document.createElement('p');
+            p.innerHTML = 'Страница прокручена слева на ' + window.pageXOffset;
+            container_2.appendChild(p);
+        }
+
+        //Функции на прокрутку страницы
+        function callScrollTo_X300_Y500() {
+            window.scrollTo(300, 500);
+        }
+
+        function callScrollBy_Y300() {
+            window.scrollBy(0, 300);
+        }
+
+        //Практика
+        function callScrollPageToBottom() {
+            window.scrollBy(0, document.body.clientHeight);
+        }
+
+        function callScrollBy_Y400() {
+            window.scrollBy(0, 400);
+        }
+
+        function callScrollPageFromBottomToTop() {
+            let body = document.documentElement;
+            if (body.scrollHeight - body.scrollTop == body.clientHeight) {
+                window.scrollTo(0, 100);
+            }
+        }
+
+        //Функция увеличения высоты и ширины элемента "#container_1" в 2 раза
+        function increaseElement() {
+            let height = this.offsetHeight;
+            let width = this.offsetWidth;
+            this.style.height = height*2 + 'px';
+            this.style.width = width*2 + 'px';
+        }
+
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <title></title>
+</head>
+
+<body>
+    <div id="container_1">
+        <input type="submit" id="button_1" value="Show height of browser window">
+        <input type="submit" id="button_2" value="Scroll browser window to bottom">
+        <input type="submit" id="button_3" value="Is there overflow?">
+    
+    </div>
+
+    <style>
+        #container_1{
+            margin: 20px;
+            border: 2px solid black;
+            padding: 0px 5px 5px 5px;
+            height: 2000px;
+            width: 2000px;
+            overflow: auto;
+        }
+
+        input{
+            margin: 20px;
+            height: 25px;
+            width: 250px;
+        }
+    </style>
+    
+    <script type="text/javascript">
+
+        //инициализируем переменные
+        var container_1 = document.getElementById('container_1'),
+            button_1 = document.getElementById('button_1'),
+            button_2 = document.getElementById('button_2'),
+            buttom_3 = document.getElementById('button_3');
+
+        //прописываем вызов функции по клику для каждой из кнопок
+        button_1.addEventListener('click', callClientHeight);
+        button_2.addEventListener('click', callScrollPageToBottom);
+        button_3.addEventListener('click', callScrollExistence);
+
+        //функция определения видимой части страницы
+        function callClientHeight() {
+            let p = document.createElement('p');
+            p.innerHTML = 'Высота окна браузера (видимая часть страницы): ' + document.documentElement.clientHeight;
+            container_1.appendChild(p);
+        }
+
+        //функция прокрутки страницы браузера в самый низ
+        function callScrollPageToBottom() {
+            window.scrollBy(0, document.body.clientHeight);
+        }
+
+        //функция определения наличия скролла
+        function callScrollExistence() {
+            let windowPage = document.documentElement.clientHeight,
+                scrollPage = document.body.clientHeight;
+            if (scrollPage >= windowPage) {
+                let p = document.createElement('p');
+                p.innerHTML = 'У окна браузера есть вертикальная прокрутка!';
+                container_1.appendChild(p);
+            } else {
+                let p = document.createElement('p');
+                p.innerHTML = 'У окна браузера нет вертикальной прокрутки!';
+                container_1.appendChild(p);
+            }
+        }
+
+    </script>
+</body>
+
+</html>

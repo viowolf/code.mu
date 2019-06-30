@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <title></title>
+    
+</head>
+
+<body>
+
+    <div>
+        <p>Абзац с текстом.</p>
+        <p>Абзац с текстом.</p>
+        <p>Абзац с текстом.</p>
+        <p>Абзац с текстом.</p>
+        <p>Абзац с текстом.</p>
+        <p>Абзац с текстом.</p>
+        <p>Абзац с текстом.</p>
+        <p>Абзац с текстом.</p>
+        <input type="submit" onclick="go()" value="Press me">
+    </div>
+     
+
+    <style>
+        input{
+            height: 20px;
+            width: 150px;
+        }
+    </style>
+    
+    
+    <script>
+        function go(t) {
+            var text = document.getElementsByTagName('p');
+            for (let i=0; i<text.length; i++){
+                text[i].innerHTML = i + '. ' + text[i].innerHTML;
+            }
+        }
+    </script>
+
+</body>
+
+</html>

@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <div id="block_4">
+        <select name="days" id="days"></select>
+        <select name="months" id="months"></select>
+        <select name="years" id="years"></select><br/>
+        <button id="button">Check</button>
+    </div>
+
+    <style>
+        div{
+            margin: 5px;
+            border: 1px solid black;
+            padding: 15px;
+            height: 100px;
+            width: 250px;
+            text-align: center;
+            float: left;
+        }
+        select{
+            margin: 5px;
+            border: 1px solid black;
+            height: 30px;
+            text-align: center;
+            font-family: 'Times New Roman', Times, serif;
+            font-size: 16px;
+        }
+        .numbers{
+            width: 70px;
+        }
+
+    </style>
+    
+    <script text="javascript">
+        //инициализируем переменные
+        let days = document.querySelector('#days'),
+            months = document.querySelector('#months'),
+            years = document.querySelector('#years'),
+            button = document.getElementById('button'),
+            date = new Date(),
+            presentYear = date.getFullYear(),
+            presentMonth = date.getMonth() + 1,
+            presentDay = date.getDate();
+
+        //функция заполнения массива элементами от from до to с добавлением нулей перед "1-9"
+        function rangeOfArray(from, to) {
+            let result = [];
+            for (let i=from; i<=to; i++) {
+                result.push(addZero(i));
+            }
+            return result;
+        }
+
+        //функция заполнения селектов элементами массива
+        function getRange(select, array) {
+            array.forEach(function(elem) {
+                select.add(new Option(elem));
+            });
+        }
+
+        //функция добавлением нулей перед "1-9"
+        function addZero(num) {
+            if (num < 10) {
+                return '0' + num;
+            } else {
+                return num;
+            }
+        }
+
+        //заполнение селектов years, months, days
+        getRange(years, rangeOfArray(1970, presentYear));
+        getRange(months, rangeOfArray(1, 12));
+        getRange(days, rangeOfArray(1, 31));
+
+        //выбор текущей даты в качестве "по умолчанию"
+        years.value = String(presentYear);
+        months.value = String(addZero(presentMonth));
+        days.value = String(addZero(presentDay));
+
+        //привязка событий к селектам
+        button.addEventListener('click', someFunc);
+
+        //функция вызова проверки
+        function someFunc() {
+            let day = parseInt(days.value);
+                maxDays = checkData();
+            if (day > maxDays) {
+                alert('Wrong date!');
+            } else {
+                alert('Write date!');
+            }
+        }
+
+        //функция проверки корректности даты
+        function checkData() {
+            let year = parseInt(years.value),
+                month = parseInt(months.value);
+            if (month == 2) {
+                if (year % 4 != 0) {
+                    return d = 28;
+                } else {
+                    return d = 29;
+                }
+            } else {
+                if (month == 4 || month == 6 || month == 9 || month == 11) {
+                    return d = 30;
+                } else {
+                    return d = 31;
+                }
+            }
+        }
+
+    </script>
+
+</body>
+</html>

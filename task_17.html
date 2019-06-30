@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <title></title>
+</head>
+
+<body>
+    <script type="text/javascript">
+        
+        //Работа с рекурсией
+        /*
+        function arrElem(arr1){
+            document.write(arr1.shift()+'<br/>');
+            if(arr1.length!=0){
+                arrElem(arr1);
+            }            
+        }
+        arrElem([1,2,3,4]);
+        */
+        function numToArray(num) {
+            let sum = 0,
+                array = num.toString().split('');
+            for (let i=0; i<array.length; i++){
+                sum += Number(array[i]);
+            }
+            return sum;
+        }
+
+        function sumElem(number){
+            if (number > 9) {
+                return sumElem(numToArray(number));
+            } else {
+                return number;
+            }
+        }
+
+        alert(sumElem(13242344545342));
+        
+    </script>
+</body>
+
+</html>
